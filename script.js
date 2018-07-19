@@ -27,6 +27,18 @@ class Stopwatch {
         }    
     }
 
+    addTimeToList() {
+        const liEl = document.createElement('li');
+
+        liEl.innerText = this.format(this.times);
+        document.querySelector('.results').appendChild(liEl);
+    }
+
+    clear() {
+        const clear = document.querySelector('.results');
+        clear.innerHTML= '';
+    }
+
     format(times) {
         return `${pad0(times.minutes)} : ${pad0(times.seconds)} : ${pad0(Math.floor(times.miliseconds))}`;
     }
@@ -81,3 +93,9 @@ stopButton.addEventListener('click', () => stopwatch.stop());
 
 let resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', () => stopwatch.resetTimer());
+
+let addButton = document.getElementById('add');
+addButton.addEventListener('click', () => stopwatch.addTimeToList());
+
+let clearButton = document.getElementById('clear');
+clearButton.addEventListener('click', () => stopwatch.clear());

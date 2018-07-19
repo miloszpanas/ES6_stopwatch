@@ -39,6 +39,20 @@ var Stopwatch = function () {
             }
         }
     }, {
+        key: 'addTimeToList',
+        value: function addTimeToList() {
+            var liEl = document.createElement('li');
+
+            liEl.innerText = this.format(this.times);
+            document.querySelector('.results').appendChild(liEl);
+        }
+    }, {
+        key: 'clear',
+        value: function clear() {
+            var clear = document.querySelector('.results');
+            clear.innerHTML = '';
+        }
+    }, {
         key: 'format',
         value: function format(times) {
             return pad0(times.minutes) + ' : ' + pad0(times.seconds) + ' : ' + pad0(Math.floor(times.miliseconds));
@@ -109,4 +123,14 @@ stopButton.addEventListener('click', function () {
 var resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', function () {
     return stopwatch.resetTimer();
+});
+
+var addButton = document.getElementById('add');
+addButton.addEventListener('click', function () {
+    return stopwatch.addTimeToList();
+});
+
+var clearButton = document.getElementById('clear');
+clearButton.addEventListener('click', function () {
+    return stopwatch.clear();
 });
